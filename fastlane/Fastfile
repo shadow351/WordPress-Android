@@ -658,9 +658,11 @@ ENV["HAS_ALPHA_VERSION"]="true"
 
     command = ""
     if is_ci 
+      command << ". ./tools/gradle-functions.sh && "
       command << "bundletool build-apks --bundle=\"#{bundle_path}\" \\
       --output=\"#{temp_dir}/universal.apks\" \\
-      --mode=universal"
+      --mode=universal \\
+      --ks=\"$(get_gradle_property gradle.properties debugStoreFile)\"" 
     else
       command = "source ./tools/gradle-functions.sh"
       command << "&& bundletool build-apks --bundle=\"#{bundle_path}\" \\
