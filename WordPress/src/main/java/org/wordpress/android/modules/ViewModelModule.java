@@ -44,6 +44,7 @@ import org.wordpress.android.ui.stats.refresh.lists.widget.configuration.StatsWi
 import org.wordpress.android.ui.stats.refresh.lists.widget.minified.StatsMinifiedWidgetConfigureViewModel;
 import org.wordpress.android.ui.stories.StoryComposerViewModel;
 import org.wordpress.android.ui.stories.intro.StoriesIntroViewModel;
+import org.wordpress.android.ui.suggestion.SuggestionViewModel;
 import org.wordpress.android.ui.whatsnew.FeatureAnnouncementViewModel;
 import org.wordpress.android.util.config.manual.ManualFeatureConfigViewModel;
 import org.wordpress.android.viewmodel.ViewModelFactory;
@@ -389,6 +390,11 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(ManualFeatureConfigViewModel.class)
     abstract ViewModel manualFeatureConfigViewModel(ManualFeatureConfigViewModel viewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(SuggestionViewModel.class)
+    abstract ViewModel suggestionViewModel(SuggestionViewModel viewModel);
 
     @Binds
     abstract ViewModelProvider.Factory provideViewModelFactory(ViewModelFactory viewModelFactory);
