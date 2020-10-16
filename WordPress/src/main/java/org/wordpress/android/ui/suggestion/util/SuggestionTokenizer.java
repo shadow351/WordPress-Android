@@ -6,6 +6,13 @@ import android.text.TextUtils;
 import android.widget.MultiAutoCompleteTextView;
 
 public class SuggestionTokenizer implements MultiAutoCompleteTextView.Tokenizer {
+
+    private final char mPrefix;
+
+    public SuggestionTokenizer(char prefix) {
+        this.mPrefix = prefix;
+    }
+
     @Override
     public CharSequence terminateToken(CharSequence text) {
         int i = text.length();
@@ -24,11 +31,11 @@ public class SuggestionTokenizer implements MultiAutoCompleteTextView.Tokenizer 
     @Override
     public int findTokenStart(CharSequence text, int cursor) {
         int i = cursor;
-        while (i > 0 && text.charAt(i - 1) != '@') {
+        while (i > 0 && text.charAt(i - 1) != mPrefix) {
             i--;
         }
 
-        if (i < 1 || text.charAt(i - 1) != '@') {
+        if (i < 1 || text.charAt(i - 1) != mPrefix) {
             return cursor;
         }
 
