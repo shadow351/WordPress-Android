@@ -48,6 +48,5 @@ class XPostsSuggestionSource @Inject constructor(
         }
     }
 
-    override fun onSuggestionsUpdated() { /* Do nothing */ }
-    override fun onDestroy() { /* Do nothing */ }
+    override fun onCleared() { /* Do nothing */ }
 }

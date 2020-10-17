@@ -1,6 +1,5 @@
 package org.wordpress.android.ui.suggestion
 
-import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import org.wordpress.android.R
@@ -59,12 +58,6 @@ class SuggestionViewModel @Inject constructor(
         }
     }
 
-    fun onSuggestionsUpdated(updatedSiteId: Long) {
-        if (updatedSiteId == suggestionSource.site.siteId) {
-            suggestionSource.onSuggestionsUpdated()
-        }
-    }
-
     fun onConnectionChanged(event: ConnectionChangeEvent) {
         val hasNoSuggestions = suggestionSource.suggestions.value?.isEmpty() == true
         if (event.isConnected && hasNoSuggestions) {
@@ -72,8 +65,9 @@ class SuggestionViewModel @Inject constructor(
         }
     }
 
-    fun onDestroy() {
-        suggestionSource.onDestroy()
+    override fun onCleared() {
+        suggestionSource.onCleared()
+        super.onCleared()
     }
 }
 
